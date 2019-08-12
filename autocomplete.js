@@ -50,7 +50,7 @@ const variables = {
  * All the events for autocomple
  */
 const handlers = {
-  onClick: function(e) {
+  onClick: function (e) {
     const selectedItem = $(e.target),
       $this = this,
       itemsList = $this.list.find(`.${variables.itemClass}`),
@@ -72,8 +72,8 @@ const handlers = {
     }
     $this.hide();
   },
-  onKeyPress: function() {},
-  onKeyUp: function() {
+  onKeyPress: function () {},
+  onKeyUp: function () {
     const $this = this,
       searchBox = $this.searchBox;
 
@@ -81,18 +81,34 @@ const handlers = {
       $this.hide();
       return;
     }
-
-    // const resultArr = $this.matchArray(searchBox.val(), $this.dataSource);
-    // $this.load(resultArr);
     $this.filterData(searchBox.val());
   },
-  onKeyDown: function() {}
+  onKeyDown: function () {},
+  globalClick: function (e) {
+    const element = this.element;
+    let target = e.target,
+      hidden = true;
+
+    if (target !== document) {
+      while (target === element || $(target).closest('.autocomplete').length === 1) {
+        hidden = false;
+        break;
+      }
+
+      target = target.parentNode;
+    }
+
+    if (hidden) {
+      this.hide();
+    }
+
+  }
 };
 /**
  * All the methods for autocomplete
  */
 const methods = {
-  createItem: function(data) {
+  createItem: function (data) {
     const item = {
       text: '',
       value: '',
@@ -113,9 +129,9 @@ const methods = {
     }">
     ${item.text}</${variables.itemTag}>`;
   },
-  delay: function(func, wait, immediate) {
+  delay: function (func, wait, immediate) {
     let timeout;
-    return function(...args) {
+    return function (...args) {
       clearTimeout(timeout);
       if (!immediate) {
         timeout = setTimeout(func.bind(this, ...args), wait || 0);
@@ -124,18 +140,21 @@ const methods = {
       }
     };
   },
-  matchArray: function(val, arrData) {
+  matchArray: function (val, arrData) {
     const $this = this;
-    return arrData.filter(function(x) {
+    return arrData.filter(function (x) {
       return (
         x[$this.options.textProperty] &&
         x[$this.options.textProperty].toLowerCase().indexOf(val.toLowerCase()) > -1
       );
     });
   },
-  filterData: function(val) {
+  filterData: function (val) {
     const $this = this;
-    const itemsList = $this.list.find(`.${variables.itemClass}:contains(${val})`);
+    //    const itemsList = $this.list.find(`.${variables.itemClass}:contains(${val})`);
+    const itemsList = $this.list.find(`.${variables.itemClass}`).filter(function (index, item) {
+      return val && $(item).text().toLowerCase().indexOf(val.toLowerCase()) > -1;
+    });
     itemsList.show();
     $this.list
       .find(`.${variables.itemClass}`)
@@ -147,15 +166,15 @@ const methods = {
       $this.hide();
     }
   },
-  show: function() {
+  show: function () {
     this.list.addClass(variables.showSearchResult);
   },
-  hide: function() {
+  hide: function () {
     this.list.removeClass(variables.showSearchResult);
   }
 };
 
-const Autocomplete = (function() {
+const Autocomplete = (function () {
   function Autocomplete(el, options) {
     const $this = this;
     $this.searchBox = $(el);
@@ -174,7 +193,7 @@ const Autocomplete = (function() {
      * intialize the autocomplete plugin
      * @returns {null}
      */
-    init: function() {
+    init: function () {
       const options = this.options;
       this.searchBox.wrap(`<div class="autocomplete ${options.wrapClass}">`);
       this.element = this.searchBox.parent();
@@ -182,7 +201,7 @@ const Autocomplete = (function() {
       this.load(this.dataSource);
       this.bind();
     },
-    load: function(dataSource, isServerData) {
+    load: function (dataSource, isServerData) {
       const options = this.options;
       const $this = this;
       let arrData = dataSource;
@@ -192,7 +211,7 @@ const Autocomplete = (function() {
       }
 
       const itemsList = [];
-      arrData.forEach(function(element, index) {
+      arrData.forEach(function (element, index) {
         const items = {
           text: element[options.textProperty],
           value: element[options.valueProperty],
@@ -209,7 +228,7 @@ const Autocomplete = (function() {
       $this.list.html(itemsList.join(' '));
       $this.list.find(`.${variables.itemClass}`).show();
     },
-    bind: function() {
+    bind: function () {
       this.searchBox.on(
         variables.eventKeyUp,
         this.delay($.proxy(this.onKeyUp, this), this.keyboardDelay)
@@ -223,12 +242,13 @@ const Autocomplete = (function() {
         `.${variables.itemClass}`,
         $.proxy(this.onClick, this)
       );
+      $(document).on(variables.eventOnClick, $.proxy(this.globalClick, this))
     },
     /**
      * destory the autocomplete plugin
      *
      */
-    destroy: function() {}
+    destroy: function () {}
   };
 
   return Autocomplete;
@@ -239,8 +259,8 @@ if ($.extend) {
 }
 
 if ($.fn) {
-  $.fn.autocomplete = function(options) {
-    this.each(function(index, element) {
+  $.fn.autocomplete = function (options) {
+    this.each(function (index, element) {
       const searchBox = $(element);
       searchBox.selectedData = 'data';
       let data = searchBox.data(namespace);
@@ -258,5 +278,5 @@ if ($.fn) {
   };
 
   $.fn.autocomplete.constractor = Autocomplete;
-//   $.fn.autocomplete = Autocomplete;
+  //   $.fn.autocomplete = Autocomplete;
 }
