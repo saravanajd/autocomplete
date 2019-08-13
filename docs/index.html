@@ -48,20 +48,11 @@
               <header class="nav-header">Introduction</header>
               <ul class="nav-sub">
                 <li><a href="#">What is autocomplete</a></li>
-                <li><a href="#">Installation</a></li>
-                <li><a href="#">Building</a></li>
-                <li><a href="#">Download</a></li>
-              </ul>
-            </section>
-          </li>
-          <li>
-            <section>
-              <header class="nav-header">Trial</header>
-              <ul class="nav-sub">
-                <li><a href="#">Introduction</a></li>
-                <li><a href="#">Documentation</a></li>
-                <li><a href="#">Installation</a></li>
-                <li><a href="#">Download</a></li>
+                <li> <a href="#usage">Installation</a> </li>
+                <li> <a href="#usage">Basic Usage</a> </li>
+                <li> <a href="#usage">Options</a> </li>
+                <li> <a href="#usage">API methods</a> </li>
+                <li> <a href="#usage">Events</a> </li>
               </ul>
             </section>
           </li>
@@ -110,6 +101,39 @@
                   class="token string">autocomplete.js</span> <span class="token punctuation">' &gt;</span><span
                   class="token operator">&lt;/</span><span class="token keyword">script</span><span
                   class="token punctuation">&gt;</span>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Basic Usage</h3>
+            <p class="intro">
+              Autocomplete accespts the options from an object of key/value pair and can be assigned by call a function
+              <span>autocomplete</span> on a input field.
+            </p>
+            <strong>Examples</strong>
+            <div class="row">
+              <div class="col-3 form-group">
+                <input type="text" class="autocomplete form-control" placeholder="type somthing" name="users"
+                  id="users" />
+              </div>
+            </div>
+            <div class="pre">
+              <div class="code" id="basicUsage">
+                <span class="token punctuation">&lt;</span>input type="text" id="users" /<span
+                  class="token punctuation">&gt;</span> <br><br>
+                const <span class="token string">users</span> = [<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ Id: 1, Name: 'India' },<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ Id: 2, Name: 'China' },<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ Id: 3, Name: 'Japan' },<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ Id: 4, Name: 'Asia' },<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ Id: 5, Name: 'canada' },<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ Id: 6, Name: 'america' }<br>
+                ];<br>
+                $('<span class="token string">#users</span>').<span class="token keyword">autocomplete</span>({<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;dataSource: jsonUsers, <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;textProperty: 'Name', <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;valueProperty: 'Id', <br>
+                });
               </div>
             </div>
           </section>
@@ -170,29 +194,45 @@
     }
   });
 
-  const jsonUsers = [
-    {
-      name: 'saravanan',
-      value: '1'
-    },
-    {
-      name: 'jd',
-      value: '1'
-    },
-    {
-      name: 'sara',
-      value: 1
-    },
-    {
-      name: 'jade',
-      value: 1
-    },
+  const users = [
+    { Id: 1, Name: 'India' },
+    { Id: 2, Name: 'China' },
+    { Id: 3, Name: 'Japan' },
+    { Id: 4, Name: 'Asia' },
+    { Id: 5, Name: 'canada' },
+    { Id: 6, Name: 'america' }
   ]
 
 
   $(document).ready(function () {
-    $('#txtUsers').autocomplete({
-      dataSource: jsonUsers
+
+    const basicUsage = `
+    <input type="text" id="users">
+
+     const users = [
+        { Id: 1, Name: 'India' },
+        { Id: 2, Name: 'China' },
+        { Id: 3, Name: 'Japan' },
+        { Id: 4, Name: 'Asia' },
+        { Id: 5, Name: 'canada' },
+        { Id: 6, Name: 'america' }
+      ]
+
+      $('#users').autocomplete({
+      dataSource: jsonUsers,
+      textProperty: 'Name',
+      valueProperty: 'Id',
+    });
+    `;
+
+    // document.getElementById('basicUsage').innerText = basicUsage;
+
+    // $('#basicUsage').text(test);
+
+    $('#users').autocomplete({
+      dataSource: users,
+      textProperty: 'Name',
+      valueProperty: 'Id',
     });
   });
 </script>
