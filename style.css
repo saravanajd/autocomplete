@@ -11,6 +11,7 @@
   4. components
     4.1 scrollbar
     4.2 code editor
+    4.3 Input
 
 */
 
@@ -20,7 +21,7 @@
 
 :root {
   --header-height: 60px;
-  --sidemenu-width: 260px;
+  --sidemenu-width: 230px;
 }
 
 /* ===============
@@ -405,7 +406,7 @@ main {
   opacity: 0.7;
 }
 
-/* 4.3 input */
+/* 4.3 Input */
 .form-control {
   color: #4e5b6a;
   font-weight: 500;
