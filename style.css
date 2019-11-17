@@ -50,6 +50,7 @@ html {
   min-width: 100%;
   min-height: 100vh;
 }
+
 body {
   height: 100vh;
   min-width: 150px;
@@ -76,34 +77,42 @@ h3 {
   line-height: 1.2;
   margin-bottom: 1rem;
 }
+
 h1 {
   font-size: 2rem;
 }
+
 h2 {
   font-size: 1.5rem;
 }
+
 h3 {
   font-size: 1.3rem;
 }
+
 a {
   color: #73849a;
   text-decoration: none;
   touch-action: manipulation;
 }
+
 a:hover,
 a:focus,
 a:active {
   color: #4e5b6a;
 }
+
 small,
 .small {
   font-size: 85%;
 }
+
 ul {
   padding: 0;
   margin: 0;
   display: block;
 }
+
 li {
   list-style: none;
 }
@@ -130,12 +139,14 @@ li {
   z-index: 2;
   height: var(--header-height);
 }
+
 header {
   align-items: center;
   display: flex;
   height: 100%;
   padding: 0 1.4rem 0 0.8rem;
 }
+
 .menu-toggle {
   flex: none;
   margin-right: 0.75em;
@@ -147,43 +158,51 @@ header {
   padding: 8px;
   width: 40px;
 }
+
 .menu-toggle:hover,
 .menu-toggle:focus {
   background: rgba(115, 132, 154, 0.03);
 }
+
 .logo {
   color: #020814;
   font-size: 1rem;
   font-weight: 500;
 }
+
 .util-nav {
   align-items: center;
   display: flex;
   font-size: 12px;
   margin-left: auto;
 }
+
 .util-nav a {
   color: #73849a;
   fill: #73849a;
   width: 32px;
   height: 32px;
 }
+
 .util-nav a:hover,
 .util-nav a:focus {
   color: #4e5b6a;
   fill: #4e5b6a;
 }
+
 /* 3.2 row */
 .row {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
 }
+
 .flex-center {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
+
 /* 3.3 column alignment */
 [class^='col-'] {
   position: relative;
@@ -261,6 +280,7 @@ header {
     width: auto;
   }
 }
+
 /* 3.4 sidemenu */
 .page-sidemenu {
   width: var(--sidemenu-width);
@@ -279,6 +299,7 @@ header {
 .menu-close .page-sidemenu {
   left: calc(0px - var(--sidemenu-width));
 }
+
 .sidemenu-header {
   border-bottom: solid 1px #edf2f6;
   -webkit-box-shadow: 0 5px 10px -10px rgba(0, 0, 0, 0.1);
@@ -286,6 +307,7 @@ header {
   font-size: 0.9rem;
   padding: 1em;
 }
+
 .sidemenu-header a {
   display: inline-block;
   width: 100%;
@@ -295,13 +317,16 @@ header {
   border: 1px solid #dee3ea;
   border-radius: 0.25rem;
 }
+
 .nav {
   padding-top: 1rem;
   line-height: 1.25;
 }
-.nav > li {
+
+.nav>li {
   padding-bottom: 1rem;
 }
+
 .nav-header {
   padding: 0.5rem 1.5rem;
   color: #b2becd;
@@ -309,6 +334,7 @@ header {
   letter-spacing: 0.06em;
   font-weight: 500;
 }
+
 .nav-sub a {
   padding: 0.4rem 1.5rem;
   width: 100%;
@@ -317,6 +343,7 @@ header {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .nav-sub a:hover,
 .nav-sub a:focus {
   color: #4e5b6a;
@@ -330,25 +357,31 @@ header {
   line-height: 2;
   position: relative;
 }
+
 .menu-close .page-content {
   margin-left: 0;
 }
+
 main {
   padding: 2rem;
   position: relative;
 }
+
 .table-of-contents {
   display: block;
   font-size: 0.9rem;
   margin-bottom: 2rem;
 }
+
 .intro {
   font-size: 1rem;
 }
+
 .intro span {
   display: inline-block;
   color: #3880ff;
 }
+
 /* ===============
   4. components
   ================ */
@@ -377,20 +410,24 @@ main {
 .code {
   line-height: 1.5;
   overflow: auto;
-  background: #f5f7fa;
+  background: #f6f8fa;
 }
+
 .pre {
   border-radius: 4px;
   display: block;
   margin-bottom: 2rem;
   padding: 2em;
 }
+
 .code {
   font-weight: 500;
 }
-.toekn {
+
+.token {
   display: inline-block;
 }
+
 .token.function,
 .token.keyword {
   color: #f55073;
@@ -401,6 +438,7 @@ main {
 .token.variable {
   color: #42b983;
 }
+
 .namespace,
 .token.punctuation {
   opacity: 0.7;
@@ -416,12 +454,15 @@ main {
   width: 100%;
   display: inline-block;
 }
+
 .form-control.input-sm {
   padding: 0.5em 1em;
 }
+
 .form-group {
   margin-bottom: 1rem;
 }
+
 textarea.form-control {
   min-height: 3rem;
   height: 90px;

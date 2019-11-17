@@ -30,7 +30,7 @@
     // Show autocomplete on textbox focus
     showDropdownOnFocus: true,
     // Show dropdown on initialize autocomplete
-    showDropdownOnLoad: true,
+    showDropdownOnLoad: false,
     // function to excute on click
     onClick: null,
     // no result text if not match
