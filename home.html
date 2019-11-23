@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Code Style</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
+    <link rel="stylesheet" href="style.css" />
+    <script src="jquery-3.4.1.js"></script>
+  </head>
 
-    </style>
-
-</head>
-
-<body class="menu-close">
+  <body class="menu-close">
     <div class="container">
-        <div class="page-content">
-            <main>
-                <pre>
+      <div class="page-content">
+        <main>
+          <pre>
                     <input type="text" id="users" />
-
                     <script>
-
-                        const users = [
+                        const jsonUsers = [
                             { Id: 1, Name: 'India' },
                             { Id: 2, Name: 'China' },
                             { Id: 3, Name: 'Japan' },
@@ -32,30 +26,27 @@
                         ];
 
                         $(document).ready(function () {
-
                             $('#users').autocomplete({
                                 dataSource: jsonUsers,
                                 textProperty: 'Name',
                                 valueProperty: 'Id',
                             });
-
                         })
 
                     </script>
                         </pre>
-            </main>
-        </div>
+        </main>
+      </div>
     </div>
-    <script src="jquery-3.4.1.js"></script>
     <script src="stylehint.js"></script>
     <script>
-        $(document).ready(function () {
-            const $code = $('pre').html();
-            const text = $code.replace(/[&<>]/g, methods.replaceTags);
-            const parsedText = langulage.javascript(text);
-            $('pre').html(parsedText);
-        });
-    </script>
-</body>
+      $(document).ready(function() {
 
+        // const $code = $('pre').html();
+        // const text = $code.replace(/[&<>]/g, methods.replaceTags);
+        // const parsedText = langulage.javascript(text);
+        $('pre').stylehint();
+      });
+    </script>
+  </body>
 </html>

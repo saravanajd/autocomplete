@@ -411,6 +411,8 @@ main {
   line-height: 1.5;
   overflow: auto;
   background: #f6f8fa;
+  font-weight: 300;
+  font-family: sans-serif;
 }
 
 .pre {
@@ -418,10 +420,6 @@ main {
   display: block;
   margin-bottom: 2rem;
   padding: 2em;
-}
-
-.code {
-  font-weight: 500;
 }
 
 .token {
