@@ -69,7 +69,7 @@
     },
     getLangulage: function(name) {
       const langulage = langulages.filter(function(x) {
-        return (x.name === $.trim(name.toLowerCase()));
+        return x.name === $.trim(name.toLowerCase());
       });
       return langulage ? langulage[0].parser : langulages[0].parser;
     },
@@ -103,7 +103,6 @@
         const $this = this;
         const options = $this.options;
         const parser = $this.getLangulage(options.langulage);
-        console.log('stylehint-parser',parser);
 
         const text = parser($this.htmlText);
         $this.element.html(text);
@@ -132,6 +131,6 @@
       return this;
     };
 
-   $.fn.stylehint.constractor = Stylehint;
+    $.fn.stylehint.constractor = Stylehint;
   }
 })(jQuery);

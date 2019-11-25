@@ -16,15 +16,15 @@
     // default selected value
     defaultValue: '',
     // if text is not matched then default value
-    notMatchedValue: '',
+    // notMatchedValue: '',
     // delay in mili seconds seach text while typing
     keyboardDelay: 500,
     // show no result text if result is not match
-    showNoResults: false,
+    // showNoResults: false,
     // show matched charected in bold
     markAsBold: true,
     // close the dropdown on select
-    closeOnSelect: false,
+    closeOnSelect: true,
     // allow custom value
     allowCustomValue: false,
     // Show autocomplete on textbox focus
@@ -239,7 +239,6 @@
           selectedItem.trigger(variables.eventOnClick);
         }
       }
-      console.log('data', $this.data);
       $this.list
         .find(`.${variables.itemClass}`)
         .not(itemsList)
