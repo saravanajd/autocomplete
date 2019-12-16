@@ -23,22 +23,27 @@
 
 :root {
 
+  /* Colors */
+  --primay-color: #3880ff;
+  --secondary-color: #73849a;
+  --secondary-color-hover: #4e5b6a;
+
   /* Header */
-  --header-bg-color: '';
-  --header-color: '';
+  --header-bg: #3880ff;
+  --header-fg: #ffffff;
+  /* --header-fg: #020814; */
 
   /* Sidemenu */
-  --sidemenu-bg-color: '';
-  --sidemenu-color: '';
+  --sidemenu-bg: #ffffff;
+  --sidemenu-fg: #738a9a;
 
   /* Layout */
-  --title-color: #020814;
-  --color: #738a9a;
+  --workspace-bg: #ffffff;
+  --workspace-fg: #738a9a;
   --font-family: sans-serif;
   --font-sized: 0.9rem;
   --font-weight: 300;
   --line-height: 1.15;
-  --background: #ffffff;
   --header-height: 60px;
   --sidemenu-width: 230px;
 }
@@ -68,18 +73,18 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   min-width: 100%;
   min-height: 100vh;
+  height: 100vh;
 }
 
 body {
-  height: 100vh;
   min-width: 150px;
   position: relative;
   margin: 0;
   padding: 0;
   font-size: 0.9rem;
   font-weight: 300;
-  color: var(--color);
-  background: var(--background);
+  color: var(--workspace-fg);
+  background: var(--workspace-bg);
   font-family: var(--font-family);
   line-height: 1.2;
   overflow: auto;
@@ -91,7 +96,7 @@ body {
 h1,
 h2,
 h3 {
-  color: var(--title-color);
+  color: var(--primay-color);
   font-weight: 600;
   line-height: var(--line-height);
   margin-bottom: 1rem;
@@ -110,7 +115,7 @@ h3 {
 }
 
 a {
-  color: #73849a;
+  color: var(--secondary-color);
   text-decoration: none;
   touch-action: manipulation;
 }
@@ -118,7 +123,7 @@ a {
 a:hover,
 a:focus,
 a:active {
-  color: #4e5b6a;
+  color: var(--secondary-color-hover);
 }
 
 small,
@@ -145,10 +150,11 @@ section {
   ================ */
 /* 3.1 header */
 .page-header {
-  background: #ffffff;
-  -webkit-box-shadow: 0 1px 3px rgba(2, 8, 20, 0.06), 0 1px 2px rgba(2, 8, 20, 0.04);
+  background: var(--header-bg);
+  -webkit-box-shadow: 0 1px 3px rgba(2, 8, 20, 0.06),
+    0 1px 2px rgba(2, 8, 20, 0.04);
   box-shadow: 0 1px 3px rgba(2, 8, 20, 0.06), 0 1px 2px rgba(2, 8, 20, 0.04);
-  color: #73849a;
+  color: var(--header-fg);
   display: block;
   font-size: 0.9rem;
   font-weight: 500;
@@ -174,8 +180,8 @@ header {
   flex: none;
   margin-right: 0.75em;
   border-radius: 50%;
-  color: #73849a;
-  fill: #73849a;
+  color: var(--header-fg);
+  fill: var(--header-fg);
   cursor: pointer;
   height: 40px;
   padding: 8px;
@@ -184,12 +190,13 @@ header {
 
 .menu-toggle:hover,
 .menu-toggle:focus {
-  background: rgba(115, 132, 154, 0.03);
+  background: var(--header-bg);
+  filter: brightness(0.9);
 }
 
 .logo {
-  color: #020814;
-  font-size: 1rem;
+  color: var(--header-fg);
+  font-size: 1.3rem;
   font-weight: 500;
 }
 
@@ -201,16 +208,17 @@ header {
 }
 
 .util-nav a {
-  color: #73849a;
-  fill: #73849a;
+  color: var(--header-fg);
+  fill: var(--header-fg);
   width: 32px;
   height: 32px;
 }
 
 .util-nav a:hover,
 .util-nav a:focus {
-  color: #4e5b6a;
-  fill: #4e5b6a;
+  color: var(--header-fg);
+  fill: var(--header-fg);
+  filter: contrast(30%);
 }
 
 /* 3.2 row */
@@ -306,6 +314,7 @@ header {
 
 /* 3.4 sidemenu */
 .page-sidemenu {
+  background: var(--sidemenu-bg);
   width: var(--sidemenu-width);
   height: calc(100vh);
   overflow: auto;
@@ -334,7 +343,7 @@ header {
 .sidemenu-header a {
   display: inline-block;
   width: 100%;
-  color: #4e5b6a;
+  color: var(--sidemenu-fg);
   font-weight: 500;
   padding: 0.5em 1em;
   border: 1px solid #dee3ea;
@@ -365,20 +374,23 @@ header {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: var(--sidemenu-fg);
 }
 
 .nav-sub a:hover,
 .nav-sub a:focus {
-  color: #4e5b6a;
+  color: var(--primay-color);
 }
 
 /* 3.5 page-content */
 .page-content {
-  padding-top: var(--header-height);
+  /* padding-top: var(--header-height); */
   margin-left: var(--sidemenu-width);
-  height: 100vh;
+  margin-top: var(--header-height);
+  height: calc(100vh - var(--header-height));
   line-height: 2;
   position: relative;
+  overflow: auto;
 }
 
 .menu-close .page-content {
@@ -402,7 +414,7 @@ main {
 
 .intro span {
   display: inline-block;
-  color: #3880ff;
+  color: var(--primay-color);
 }
 
 /* ===============
@@ -424,7 +436,7 @@ main {
 ::-webkit-scrollbar-thumb {
   border-radius: 3px;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #4e5b6a;
+  background-color: var(--primay-color);
 }
 
 /* 4.2 code editor */
