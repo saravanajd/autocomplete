@@ -13,7 +13,6 @@
 
   <link rel="stylesheet" href="autocomplete.css" />
   <script src="autocomplete.js"></script>
-
 </head>
 
 <body>
@@ -33,31 +32,31 @@
               <path
                 d="M256 70.7c-102.6 0-185.9 83.2-185.9 185.9 0 82.1 53.3 151.8 127.1 176.4 9.3 1.7 12.3-4 12.3-8.9V389.4c-51.7 11.3-62.5-21.9-62.5-21.9 -8.4-21.5-20.6-27.2-20.6-27.2 -16.9-11.5 1.3-11.3 1.3-11.3 18.7 1.3 28.5 19.2 28.5 19.2 16.6 28.4 43.5 20.2 54.1 15.4 1.7-12 6.5-20.2 11.8-24.9 -41.3-4.7-84.7-20.6-84.7-91.9 0-20.3 7.3-36.9 19.2-49.9 -1.9-4.7-8.3-23.6 1.8-49.2 0 0 15.6-5 51.1 19.1 14.8-4.1 30.7-6.2 46.5-6.3 15.8 0.1 31.7 2.1 46.6 6.3 35.5-24 51.1-19.1 51.1-19.1 10.1 25.6 3.8 44.5 1.8 49.2 11.9 13 19.1 29.6 19.1 49.9 0 71.4-43.5 87.1-84.9 91.7 6.7 5.8 12.8 17.1 12.8 34.4 0 24.9 0 44.9 0 51 0 4.9 3 10.7 12.4 8.9 73.8-24.6 127-94.3 127-176.4C441.9 153.9 358.6 70.7 256 70.7z">
               </path>
-            </svg></a>
+            </svg>
+          </a>
         </nav>
       </header>
     </div>
     <div class="page-sidemenu">
-      <section class="sidemenu-header">
-        <a href="#">Download</a>
-      </section>
-      <section>
+      <div class="sidemenu-header">
+        <a href="#">Autocomplete</a>
+      </div>
+      <div>
         <ul class="nav">
           <li>
             <section>
-              <header class="nav-header">Introduction</header>
               <ul class="nav-sub">
                 <li><a href="#">What is autocomplete</a></li>
-                <li> <a href="#usage">Installation</a> </li>
-                <li> <a href="#usage">Basic Usage</a> </li>
-                <li> <a href="#usage">Options</a> </li>
-                <li> <a href="#usage">API methods</a> </li>
-                <li> <a href="#usage">Events</a> </li>
+                <li><a href="#usage">Installation</a></li>
+                <li><a href="#usage">Basic Usage</a></li>
+                <li><a href="#usage">Options</a></li>
+                <li><a href="#usage">API methods</a></li>
+                <li><a href="#usage">Events</a></li>
               </ul>
             </section>
           </li>
         </ul>
-      </section>
+      </div>
     </div>
     <div class="page-content">
       <main>
@@ -67,75 +66,80 @@
             <strong class="nav-header" style="padding: 0px">Contents</strong>
             <nav>
               <ul class="">
-                <li> <a href="#usage">Installation</a> </li>
-                <li> <a href="#usage">Basic Usage</a> </li>
-                <li> <a href="#usage">Options</a> </li>
-                <li> <a href="#usage">API methods</a> </li>
-                <li> <a href="#usage">Events</a> </li>
+                <li><a href="#usage">Installation</a></li>
+                <li><a href="#usage">Basic Usage</a></li>
+                <li><a href="#usage">Options</a></li>
+                <li><a href="#usage">API methods</a></li>
+                <li><a href="#usage">Events</a></li>
               </ul>
             </nav>
             <section>
               <p class="intro">
-                A lightweight, flexible, fast jQuery autocomplete/typehead plugin which automatically suggests matching
-                items while typing keywords(search items) in a text field. This plugin enables your users to quickly
-                filter, find and select items from huge lists such as user list, country list, search results and more.
+                A lightweight, flexible, fast jQuery autocomplete/typehead
+                plugin which automatically suggests matching items while
+                typing keywords(search items) in a text field. This plugin
+                enables your users to quickly filter, find and select items
+                from huge lists such as user list, country list, search
+                results and more.
               </p>
             </section>
           </div>
           <section>
             <h3>Installation</h3>
             <p class="intro">
-              Include the JavaScript <span>autocomplete.js</span> and Stylesheet <span>autcomplete.css</span> on the
-              webpage
+              Include the JavaScript <span>autocomplete.js</span> and
+              Stylesheet <span>autcomplete.css</span> on the webpage
             </p>
-            <div class="pre">
-              <div class="code">
-                <span class="token punctuation">&lt;</span><span class="token keyword">link </span>rel<span
-                  class="token operator">=</span><span class="token punctuation">'</span><span
-                  class="token string">stylesheet</span><span class="token punctuation">'</span> href<span
-                  class="token operator">=</span><span class="token punctuation">'</span><span
-                  class="token string">autocomplete.css</span><span class="token punctuation">' /&gt;</span>
-                <br>
-                <span class="token punctuation">&lt;</span><span class="token keyword">script</span> src<span
-                  class="token operator">=</span> <span class="token punctuation">'</span><span
-                  class="token string">autocomplete.js</span> <span class="token punctuation">' &gt;</span><span
-                  class="token operator">&lt;/</span><span class="token keyword">script</span><span
-                  class="token punctuation">&gt;</span>
-              </div>
-            </div>
+            <pre class="pre">
+<link rel='stylesheet' href='autocomplete.css' />
+<script src= 'autocomplete.js'></script></pre>
           </section>
           <section>
             <h3>Basic Usage</h3>
             <p class="intro">
-              Autocomplete accespts the options from an object of key/value pair and can be assigned by call a function
+              Autocomplete accespts the options from an object of key/value
+              pair and can be assigned by call a function
               <span>autocomplete</span> on a input field.
             </p>
-            <strong>Examples</strong>
             <div class="row">
-              <div class="col-3 form-group">
-                <input type="text" class="autocomplete form-control" placeholder="type somthing" name="users"
-                  id="users" />
+              <div class="col-3">
+                <strong>Examples</strong>
+                <div class="form-group">
+                  <input type="text" class="autocomplete form-control" placeholder="type somthing" name="users"
+                    id="users" />
+                </div>
+                <div class="form-group">
+                  <button type="button" class="btn" onclick="GetSelectedValue(this)">
+                    Get Selected Value
+                  </button>
+                </div>
+              </div>
+              <div class="col-9" style="padding: 0 1rem">
+                <strong>Config</strong>
+                <pre class="pre">
+(document).ready(function () {
+  $('#users').autocomplete({
+    dataSource: jsonUsers,
+    textProperty: 'Name',
+    valueProperty: 'Id',
+  });
+)</pre>
               </div>
             </div>
-            <div class="pre">
-              <div class="code" id="basicUsage">
-                <span class="token punctuation">&lt;</span>input type="text" id="users" /<span
-                  class="token punctuation">&gt;</span> <br><br>
-                const <span class="token string">users</span> = [<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ Id: 1, Name: 'India' },<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ Id: 2, Name: 'China' },<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ Id: 3, Name: 'Japan' },<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ Id: 4, Name: 'Asia' },<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ Id: 5, Name: 'canada' },<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ Id: 6, Name: 'america' }<br>
-                ];<br>
-                $('<span class="token string">#users</span>').<span class="token keyword">autocomplete</span>({<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;dataSource: jsonUsers, <br>
-                &nbsp;&nbsp;&nbsp;&nbsp;textProperty: 'Name', <br>
-                &nbsp;&nbsp;&nbsp;&nbsp;valueProperty: 'Id', <br>
-                });
-              </div>
-            </div>
+          </section>
+          <section>
+            <h3>Options</h3>
+            <table id="tblSettings">
+              <thead>
+                <tr>
+                  <th>Property</th>
+                  <th>Default</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
           </section>
           <section>
             <h3>Examples</h3>
@@ -155,8 +159,12 @@
                         id="txtDesignation" />
                       <ul class="autocomplete-list">
                         <li>Software Developer</li>
-                        <li>Business analysis test for long description if some text size is longer. then test it with
-                          this line and i think this line is long enough to make more then three line.</li>
+                        <li>
+                          Business analysis test for long description if some
+                          text size is longer. then test it with this line and
+                          i think this line is long enough to make more then
+                          three line.
+                        </li>
                         <li>Business analysis</li>
                         <li>Enginer</li>
                         <li>Civil engineer</li>
@@ -180,61 +188,67 @@
       </main>
     </div>
   </div>
-  </div>
-</body>
-<script>
-  document.querySelector('.menu-toggle').addEventListener('click', function () {
-    const element = document.querySelector('body');
-    const isMenuOpen = element.className.indexOf('menu-close') > -1;
-    if (isMenuOpen) {
-      element.classList.remove('menu-close');
+  <script src="stylehint.js"></script>
+  <script>
+    document
+      .querySelector('.menu-toggle')
+      .addEventListener('click', function () {
+        const element = document.querySelector('body');
+        const isMenuOpen = element.className.indexOf('menu-close') > -1;
+        if (isMenuOpen) {
+          element.classList.remove('menu-close');
+        } else {
+          element.classList.add('menu-close');
+        }
+      });
+
+    $.ajax({
+      url: 'Options.json',
+      success: function (data) {
+        if (!data) {
+          return;
+        }
+
+        const tbody = $('#tblSettings tbody');
+        $.each(data, function (index, item) {
+          const tr = $('<tr><td class="Property"></td><td class="Default"></td><td class="Description"></td></tr>');
+          tr.find('.Property').html(item.Property);
+          tr.find('.Default').html(item.Default);
+          tr.find('.Description').html(item.Description);
+          tbody.append(tr);
+        })
+      }
+    })
+
+    const usersList = [];
+    for (let i = 0; i < 1000; i++) {
+      const user = {
+        id: i + 1,
+        Name: Math.random()
+          .toString(36)
+          .substring(7)
+      };
+      usersList.push(user);
     }
-    else {
-      element.classList.add('menu-close');
-    }
-  });
+    usersList.push({ Id: 10001, Name: 'India' });
 
-  const users = [
-    { Id: 1, Name: 'India' },
-    { Id: 2, Name: 'China' },
-    { Id: 3, Name: 'Japan' },
-    { Id: 4, Name: 'Asia' },
-    { Id: 5, Name: 'canada' },
-    { Id: 6, Name: 'america' }
-  ]
+    $(document).ready(function () {
 
-
-  $(document).ready(function () {
-
-    const basicUsage = `
-    <input type="text" id="users">
-
-     const users = [
-        { Id: 1, Name: 'India' },
-        { Id: 2, Name: 'China' },
-        { Id: 3, Name: 'Japan' },
-        { Id: 4, Name: 'Asia' },
-        { Id: 5, Name: 'canada' },
-        { Id: 6, Name: 'america' }
-      ]
+      $('pre').stylehint();
 
       $('#users').autocomplete({
-      dataSource: jsonUsers,
-      textProperty: 'Name',
-      valueProperty: 'Id',
+        dataSource: usersList,
+        textProperty: 'Name',
+        valueProperty: 'Id'
+      });
     });
-    `;
 
-    // document.getElementById('basicUsage').innerText = basicUsage;
-
-    // $('#basicUsage').text(test);
-
-    $('#users').autocomplete({
-      dataSource: users,
-      textProperty: 'Name',
-      valueProperty: 'Id',
-    });
-  });
-</script>
+    function GetSelectedValue() {
+      const $element = $('#users');
+      const value = $element.val();
+      const data = $('#users').data('autocomplete').data;
+    }
+  </script>
+</body>
 
 </html>
