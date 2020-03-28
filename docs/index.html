@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,11 +8,10 @@
   <title>Autocomplete Plugin</title>
   <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
 
-  <link rel="stylesheet" href="style.css" />
-  <script src="jquery-3.4.1.js"></script>
+  <link rel="stylesheet" href="/src/css/style.css" />
 
-  <link rel="stylesheet" href="autocomplete.css" />
-  <script src="autocomplete.js"></script>
+  <link rel="stylesheet" href="/src/css/autocomplete.css" />
+
 </head>
 
 <body>
@@ -26,7 +25,11 @@
         </div>
         <div class="logo">Autocomplete Plugin</div>
         <nav class="util-nav">
-          <a class="icon-13 github" href="https://github.com/saravanajd" target="_blank" title="GitHub"
+          <a class="btn" href="https://github.com/saravanajd/autocomplete/archive/master.zip"
+            style="margin-right: 1rem;">
+            Download
+          </a>
+          <a class="social" href="https://github.com/saravanajd" target="_blank" title="GitHub"
             preserveaspectratio="xMidYMid meet">
             <svg viewBox="0 0 512 512">
               <path
@@ -45,13 +48,12 @@
         <ul class="nav">
           <li>
             <section>
-              <ul class="nav-sub">
+              <ul class="nav-sub menu">
                 <li><a href="#">What is autocomplete</a></li>
-                <li><a href="#usage">Installation</a></li>
+                <li><a href="#Installation">Installation</a></li>
                 <li><a href="#usage">Basic Usage</a></li>
-                <li><a href="#usage">Options</a></li>
-                <li><a href="#usage">API methods</a></li>
-                <li><a href="#usage">Events</a></li>
+                <li><a href="#Events">Events</a></li>
+                <li><a href="#Options">Options</a></li>
               </ul>
             </section>
           </li>
@@ -61,16 +63,15 @@
     <div class="page-content">
       <main>
         <article>
-          <h1>Autocomplete</h1>
+          <h1 style="margin-top: 0;">Autocomplete</h1>
           <div class="table-of-contents">
             <strong class="nav-header" style="padding: 0px">Contents</strong>
             <nav>
-              <ul class="">
-                <li><a href="#usage">Installation</a></li>
+              <ul class="menu">
+                <li><a href="#Installation">Installation</a></li>
                 <li><a href="#usage">Basic Usage</a></li>
-                <li><a href="#usage">Options</a></li>
-                <li><a href="#usage">API methods</a></li>
-                <li><a href="#usage">Events</a></li>
+                <li><a href="#Events">Events</a></li>
+                <li><a href="#Options">Options</a></li>
               </ul>
             </nav>
             <section>
@@ -84,17 +85,17 @@
               </p>
             </section>
           </div>
-          <section>
+          <section id="Installation">
             <h3>Installation</h3>
             <p class="intro">
               Include the JavaScript <span>autocomplete.js</span> and
               Stylesheet <span>autcomplete.css</span> on the webpage
             </p>
             <pre class="pre">
-<link rel='stylesheet' href='autocomplete.css' />
-<script src= 'autocomplete.js'></script></pre>
+&lt;link rel='stylesheet' href='autocomplete.css' /&gt;
+&lt;script src= 'autocomplete.js'&gt;&lt;/script&gt;</pre>
           </section>
-          <section>
+          <section id="usage">
             <h3>Basic Usage</h3>
             <p class="intro">
               Autocomplete accespts the options from an object of key/value
@@ -115,19 +116,58 @@
                 </div>
               </div>
               <div class="col-9" style="padding: 0 1rem">
-                <strong>Config</strong>
+                <strong>Javascript:</strong>
                 <pre class="pre">
-(document).ready(function () {
+$(document).ready(function () {
+
   $('#users').autocomplete({
-    dataSource: jsonUsers,
+    dataSource: arrayData,
     textProperty: 'Name',
     valueProperty: 'Id',
   });
+
 )</pre>
               </div>
             </div>
           </section>
-          <section>
+          <section id="Events">
+            <h3>Events</h3>
+            <p class="intro">
+              Autocomplete allows you to Invokes function when user clicks on one item from suggestion list. This
+              feature is really helpful when you need to run some code when suggestion list is clicked
+            </p>
+            <div class="row">
+              <div class="col-3">
+                <strong>Examlple</strong>
+                <div class="form-group">
+                  <input type="text" class="autocomplete form-control" placeholder="type somthing" name="users"
+                    id="userEvents" />
+                </div>
+              </div>
+              <div class="col-9" style="padding: 0 1rem">
+                <div>
+                  <strong>Selected Value</strong>
+                  <div style="background: #f6f8fa;padding: 0 1rem;margin-bottom: 0.5rem;">
+                    <div id="OutputContainer">
+                      No item is Selected
+                    </div>
+                  </div>
+                  <strong>Javascript:</strong>
+                  <pre class="pre">
+$('#users').autocomplete({
+   dataSource: arrayData,
+   textProperty: 'Name',
+   valueProperty: 'Id',
+   onClick: function (selectedItem) {
+     console.log(selectedItem);
+   }
+});
+  </pre>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="Options">
             <h3>Options</h3>
             <table id="tblSettings">
               <thead>
@@ -141,66 +181,43 @@
               </tbody>
             </table>
           </section>
-          <section>
-            <h3>Examples</h3>
-            <div class="row">
-              <div class="col-6">
-                <div class="row">
-                  <div class="col-6 form-group">
-                    <input type="text" class="form-control" placeholder="first name" name="first name"
-                      id="txtFirstName" />
-                  </div>
-                  <div class="col-6 form-group">
-                    <input type="text" class="form-control" placeholder="last name" name="last name" id="txtLastName" />
-                  </div>
-                  <div class="col-12 form-group">
-                    <div class="autocomplete">
-                      <input type="text" class="form-control" placeholder="designation" name="designation"
-                        id="txtDesignation" />
-                      <ul class="autocomplete-list">
-                        <li>Software Developer</li>
-                        <li>
-                          Business analysis test for long description if some
-                          text size is longer. then test it with this line and
-                          i think this line is long enough to make more then
-                          three line.
-                        </li>
-                        <li>Business analysis</li>
-                        <li>Enginer</li>
-                        <li>Civil engineer</li>
-                        <li>Bio medical engineer</li>
-                        <li>Sales</li>
-                        <li>Team lead</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-12 form-group">
-                    <input type="text" class="form-control" placeholder="users" name="users" id="txtUsers" />
-                  </div>
-                  <div class="col-12 form-group">
-                    <textarea class="form-control" placeholder="address" name="address" id="txtAddress"></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
         </article>
       </main>
     </div>
   </div>
-  <script src="stylehint.js"></script>
+
+  <script src="/src/js/jquery-3.4.1.js"></script>
+  <script src="/src/js/core.js"></script>
+  <script src="/src/js/autocomplete.js"></script>
+  <script src="/src/js/stylehint.js"></script>
   <script>
-    document
-      .querySelector('.menu-toggle')
-      .addEventListener('click', function () {
-        const element = document.querySelector('body');
-        const isMenuOpen = element.className.indexOf('menu-close') > -1;
-        if (isMenuOpen) {
-          element.classList.remove('menu-close');
-        } else {
-          element.classList.add('menu-close');
+
+
+    $(document).ready(function () {
+
+      $('.pre').stylehint();
+
+      $('#users').autocomplete({
+        dataSource: usersList,
+        textProperty: 'Name',
+        valueProperty: 'Id',
+        closeOnSelect: true,
+      });
+
+
+      $('#userEvents').autocomplete({
+        dataSource: usersList,
+        textProperty: 'Name',
+        valueProperty: 'Id',
+        closeOnSelect: true,
+        onClick: function (selectedItem) {
+          const result = JSON.stringify(selectedItem);
+          $('#OutputContainer').html(result);
         }
       });
+
+    });
+
 
     $.ajax({
       url: 'Options.json',
@@ -220,6 +237,7 @@
       }
     })
 
+
     const usersList = [];
     for (let i = 0; i < 1000; i++) {
       const user = {
@@ -232,22 +250,16 @@
     }
     usersList.push({ Id: 10001, Name: 'India' });
 
-    $(document).ready(function () {
-
-      $('pre').stylehint();
-
-      $('#users').autocomplete({
-        dataSource: usersList,
-        textProperty: 'Name',
-        valueProperty: 'Id'
-      });
-    });
 
     function GetSelectedValue() {
       const $element = $('#users');
       const value = $element.val();
       const data = $('#users').data('autocomplete').data;
+
+      alert('Selected Value\n' + JSON.stringify(data));
+
     }
+
   </script>
 </body>
 

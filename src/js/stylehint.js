@@ -14,7 +14,7 @@
   const constants = {
     dataUID: 'data-uid',
     tagsToReplace: {
-      '&': '&amp;',
+      // '&': '&amp;',
       '<': '&lt;',
       '>': '&gt;'
     },
@@ -24,7 +24,7 @@
     },
     Regex: {
       functionName: /([a-zA-Z_{1}][a-zA-Z0-9_]+)(?=\()\b/g,
-      htmlTags: /(script|input)\b/g
+      htmlTags: /(script|link|input)\b/g
     }
   };
 

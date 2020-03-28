@@ -213,15 +213,15 @@ header {
   margin-left: auto;
 }
 
-.util-nav a {
+.util-nav a.social {
   color: var(--header-fg);
   fill: var(--header-fg);
   width: 32px;
   height: 32px;
 }
 
-.util-nav a:hover,
-.util-nav a:focus {
+.util-nav a.social:hover,
+.util-nav a.social:focus {
   color: var(--header-fg);
   fill: var(--header-fg);
   filter: contrast(30%);
@@ -441,6 +441,7 @@ main {
 
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
   background-color: #fafafa;
 }
 

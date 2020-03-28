@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
   const namespace = 'autocomplete';
   const version = '1.0.0';
 
@@ -8,9 +8,9 @@
 
   const defaults = {
     // Text property of an array
-    textProperty: 'name',
+    textProperty: '',
     // value propertu of an array
-    valueProperty: 'value',
+    valueProperty: '',
     // array
     dataSource: [],
     // default selected value
@@ -19,10 +19,6 @@
     // notMatchedValue: '',
     // delay in mili seconds seach text while typing
     keyboardDelay: 500,
-    // show no result text if result is not match
-    // showNoResults: false,
-    // show matched charected in bold
-    markAsBold: true,
     // close the dropdown on select
     closeOnSelect: true,
     // allow custom value
@@ -31,13 +27,12 @@
     showDropdownOnFocus: true,
     // Show dropdown on initialize autocomplete
     showDropdownOnLoad: false,
+    // Add custom class to selected item
+    selectedClass: '',
+    // Add a custom class to autocomplete dropdown
+    wrapClass: '',
     // function to excute on click
     onClick: null,
-    // no result text if not match
-    noResultsTemplate:
-      '<li class="autocomplete-item">No results for {{title}}</li>',
-    selectedClass: '',
-    wrapClass: ''
   };
 
   const variables = {
@@ -62,7 +57,7 @@
    */
   const handlers = {
     // On Item selected event
-    onItemSelected: function(e) {
+    onItemSelected: function (e) {
       const selectedItem = $(e.target),
         $this = this,
         itemsList = $this.list.find(`.${variables.itemClass}`),
@@ -87,14 +82,19 @@
       } else {
         $this.show();
       }
+
+      if ($this.options.onClick && $.isFunction($this.options.onClick)) {
+        $this.options.onClick($this.data);
+      }
+
     },
-    onSearchBoxKeyUp: function() {
+    onSearchBoxKeyUp: function () {
       const $this = this,
         searchBox = $this.searchBox;
 
       $this.filterData(searchBox.val());
     },
-    onSearchBoxLeave: function() {
+    onSearchBoxLeave: function () {
       const $this = this,
         searchBox = $this.searchBox;
 
@@ -103,7 +103,7 @@
         $this.filterData('');
       }
     },
-    onSearchBoxFocus: function() {
+    onSearchBoxFocus: function () {
       const $this = this;
 
       if ($this.options.showDropdownOnFocus) {
@@ -113,13 +113,13 @@
 
       $this.hide();
     },
-    onSearchBoxValueChange: function() {
+    onSearchBoxValueChange: function () {
       const $this = this,
         searchBox = $this.searchBox;
 
       $this.filterData(searchBox.val());
     },
-    globalClick: function(e) {
+    globalClick: function (e) {
       const $this = this,
         element = $this.element;
       let target = e.target,
@@ -146,7 +146,7 @@
    * All the methods for autocomplete
    */
   const methods = {
-    createItem: function(data) {
+    createItem: function (data) {
       const item = {
         text: '',
         value: '',
@@ -174,9 +174,9 @@
       }="${item.index}">
     ${item.text}</${variables.itemTag}>`;
     },
-    delay: function(func, wait, immediate) {
+    delay: function (func, wait, immediate) {
       let timeout;
-      return function(...args) {
+      return function (...args) {
         clearTimeout(timeout);
         if (!immediate) {
           timeout = setTimeout(func.bind(this, ...args), wait || 0);
@@ -185,18 +185,18 @@
         }
       };
     },
-    matchArray: function(val, arrData) {
+    matchArray: function (val, arrData) {
       const $this = this;
-      return arrData.filter(function(x) {
+      return arrData.filter(function (x) {
         return (
           x[$this.options.textProperty] &&
           x[$this.options.textProperty]
-            .toLowerCase()
-            .indexOf(val.toLowerCase()) > -1
+          .toLowerCase()
+          .indexOf(val.toLowerCase()) > -1
         );
       });
     },
-    filterData: function(val) {
+    filterData: function (val) {
       const $this = this,
         inputText = val ? $.trim(val).toLowerCase() : null,
         classes = [];
@@ -210,13 +210,13 @@
       itemsList.removeClass(classes.join(' '));
 
       if (inputText) {
-        itemsList = itemsList.filter(function(index, item) {
+        itemsList = itemsList.filter(function (index, item) {
           return (
             inputText &&
             $(item)
-              .text()
-              .toLowerCase()
-              .indexOf(inputText) > -1
+            .text()
+            .toLowerCase()
+            .indexOf(inputText) > -1
           );
         });
       }
@@ -246,15 +246,15 @@
 
       $this.show();
     },
-    show: function() {
+    show: function () {
       this.list.addClass(variables.showSearchResult);
     },
-    hide: function() {
+    hide: function () {
       this.list.removeClass(variables.showSearchResult);
     }
   };
 
-  const Autocomplete = (function() {
+  const Autocomplete = (function () {
     function Autocomplete(el, options) {
       const $this = this;
       $this.searchBox = $(el);
@@ -273,7 +273,7 @@
        * intialize the autocomplete plugin
        * @returns {null}
        */
-      init: function() {
+      init: function () {
         const options = this.options;
         this.searchBox.wrap(`<div class="autocomplete ${options.wrapClass}">`);
         this.element = this.searchBox.parent();
@@ -281,7 +281,7 @@
         this.load(this.dataSource);
         this.bind();
       },
-      load: function(dataSource, isServerData) {
+      load: function (dataSource, isServerData) {
         const $this = this,
           options = this.options,
           classes = [];
@@ -293,7 +293,7 @@
         }
 
         const itemsList = [];
-        arrData.forEach(function(element, index) {
+        arrData.forEach(function (element, index) {
           const items = {
             text: element[options.textProperty],
             value: element[options.valueProperty],
@@ -319,7 +319,7 @@
 
         $this.hide();
       },
-      bind: function() {
+      bind: function () {
         this.searchBox.on(
           variables.eventKeyUp,
           this.delay($.proxy(this.onSearchBoxKeyUp, this), this.keyboardDelay)
@@ -349,7 +349,7 @@
        * destory the autocomplete plugin
        *
        */
-      destroy: function() {}
+      destroy: function () {}
     };
 
     return Autocomplete;
@@ -360,8 +360,15 @@
   }
 
   if ($.fn) {
-    $.fn.autocomplete = function(options) {
-      this.each(function(index, element) {
+    $.fn.autocomplete = function (options) {
+
+      // Validate Options
+      if (!options || !options.textProperty || !options.valueProperty || !options.dataSource) {
+        throw `${namespace} - Invalid data`;
+        return false;
+      }
+
+      this.each(function (index, element) {
         const searchBox = $(element);
         searchBox.selectedData = 'data';
         let data = searchBox.data(namespace);
