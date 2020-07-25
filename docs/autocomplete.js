@@ -1,20 +1,20 @@
 (function ($) {
-  const namespace = 'autocomplete';
-  const version = '1.0.0';
+  const namespace = "autocomplete";
+  const version = "1.0.1";
 
-  if (typeof jQuery === 'undefined') {
+  if (typeof jQuery === "undefined") {
     alert(`${namespace} version ${version} plugin requires jQuery`);
   }
 
   const defaults = {
     // Text property of an array
-    textProperty: '',
+    textProperty: "",
     // value propertu of an array
-    valueProperty: '',
+    valueProperty: "",
     // array
     dataSource: [],
     // default selected value
-    defaultValue: '',
+    defaultValue: "",
     // if text is not matched then default value
     // notMatchedValue: '',
     // delay in mili seconds seach text while typing
@@ -28,28 +28,30 @@
     // Show dropdown on initialize autocomplete
     showDropdownOnLoad: false,
     // Add custom class to selected item
-    selectedClass: '',
+    selectedClass: "",
     // Add a custom class to autocomplete dropdown
-    wrapClass: '',
+    wrapClass: "",
     // function to excute on click
     onClick: null,
+    // function to exute on value change
+    onChange: null,
   };
 
   const variables = {
-    dataUID: 'data-uid',
-    dataIndex: 'data-index',
-    dataValue: 'data-value',
+    dataUID: "data-uid",
+    dataIndex: "data-index",
+    dataValue: "data-value",
     listTemplate: '<ul class="autocomplete-list">',
-    showSearchResult: 'show',
-    itemTag: 'li',
-    itemClass: 'autocomplete-item',
-    selectedClass: 'selected',
-    eventKeyUp: 'keyup.' + namespace,
-    eventKeyDown: 'keydown.' + namespace,
-    eventOnClick: 'click.' + namespace,
-    eventOnFocus: 'focus.' + namespace,
-    eventOnChange: 'change.' + namespace,
-    eventOnBlur: 'blur.' + namespace
+    showSearchResult: "show",
+    itemTag: "li",
+    itemClass: "autocomplete-item",
+    selectedClass: "selected",
+    eventKeyUp: "keyup." + namespace,
+    eventKeyDown: "keydown." + namespace,
+    eventOnClick: "click." + namespace,
+    eventOnFocus: "focus." + namespace,
+    eventOnChange: "change." + namespace,
+    eventOnBlur: "blur." + namespace,
   };
 
   /**
@@ -58,6 +60,7 @@
   const handlers = {
     // On Item selected event
     onItemSelected: function (e) {
+      e.preventDefault();
       const selectedItem = $(e.target),
         $this = this,
         itemsList = $this.list.find(`.${variables.itemClass}`),
@@ -68,8 +71,8 @@
         classes.push($this.options.selectedClass);
       }
 
-      itemsList.removeClass(classes.join(' '));
-      selectedItem.addClass(classes.join(' '));
+      itemsList.removeClass(classes.join(" "));
+      selectedItem.addClass(classes.join(" "));
 
       $this.searchBox.val($.trim(selectedItem.text()));
       const index = parseInt(selectedItem.attr(variables.dataIndex));
@@ -87,6 +90,9 @@
         $this.options.onClick($this.data);
       }
 
+      if ($this.options.onChange && $.isFunction($this.options.onChange)) {
+        $this.options.onChange($this.data);
+      }
     },
     onSearchBoxKeyUp: function () {
       const $this = this,
@@ -95,13 +101,7 @@
       $this.filterData(searchBox.val());
     },
     onSearchBoxLeave: function () {
-      const $this = this,
-        searchBox = $this.searchBox;
-
-      if (!$this.options.allowCustomValue && !$this.data) {
-        searchBox.val('');
-        $this.filterData('');
-      }
+      const $this = this;
     },
     onSearchBoxFocus: function () {
       const $this = this;
@@ -118,9 +118,14 @@
         searchBox = $this.searchBox;
 
       $this.filterData(searchBox.val());
+
+      if ($this.options.onChange && $.isFunction($this.options.onChange)) {
+        $this.options.onChange($this.data);
+      }
     },
     globalClick: function (e) {
       const $this = this,
+        searchBox = $this.searchBox,
         element = $this.element;
       let target = e.target,
         hidden = true;
@@ -128,7 +133,7 @@
       if (target !== document) {
         while (
           target === element ||
-          $(target).closest('.autocomplete').length === 1
+          $(target).closest(".autocomplete").length === 1
         ) {
           hidden = false;
           break;
@@ -138,9 +143,14 @@
       }
 
       if (hidden) {
+        if (!$this.options.allowCustomValue && !$this.data) {
+          searchBox.val("");
+          $this.filterData("");
+        }
+
         $this.hide();
       }
-    }
+    },
   };
   /**
    * All the methods for autocomplete
@@ -148,11 +158,11 @@
   const methods = {
     createItem: function (data) {
       const item = {
-        text: '',
-        value: '',
+        text: "",
+        value: "",
         selected: false,
         index: 0,
-        isShow: true
+        isShow: true,
       };
       $.extend(item, data);
       const $this = this,
@@ -169,7 +179,7 @@
       }
 
       return `<${variables.itemTag} class="${variables.itemClass}
-    ${classes.join(' ')}" ${variables.dataValue}="${item.value}" ${
+    ${classes.join(" ")}" ${variables.dataValue}="${item.value}" ${
         variables.dataIndex
       }="${item.index}">
     ${item.text}</${variables.itemTag}>`;
@@ -191,8 +201,8 @@
         return (
           x[$this.options.textProperty] &&
           x[$this.options.textProperty]
-          .toLowerCase()
-          .indexOf(val.toLowerCase()) > -1
+            .toLowerCase()
+            .indexOf(val.toLowerCase()) > -1
         );
       });
     },
@@ -207,16 +217,12 @@
       }
 
       let itemsList = $this.list.find(`.${variables.itemClass}`);
-      itemsList.removeClass(classes.join(' '));
+      itemsList.removeClass(classes.join(" "));
 
       if (inputText) {
         itemsList = itemsList.filter(function (index, item) {
           return (
-            inputText &&
-            $(item)
-            .text()
-            .toLowerCase()
-            .indexOf(inputText) > -1
+            inputText && $(item).text().toLowerCase().indexOf(inputText) > -1
           );
         });
       }
@@ -239,10 +245,7 @@
           selectedItem.trigger(variables.eventOnClick);
         }
       }
-      $this.list
-        .find(`.${variables.itemClass}`)
-        .not(itemsList)
-        .hide();
+      $this.list.find(`.${variables.itemClass}`).not(itemsList).hide();
 
       $this.show();
     },
@@ -251,14 +254,14 @@
     },
     hide: function () {
       this.list.removeClass(variables.showSearchResult);
-    }
+    },
   };
 
   const Autocomplete = (function () {
     function Autocomplete(el, options) {
       const $this = this;
       $this.searchBox = $(el);
-      $this.searchBox.selectedData = 'data';
+      $this.searchBox.selectedData = "data";
       $this.element = null;
       $this.options = $.extend({}, defaults, options);
       $this.list = $(variables.listTemplate);
@@ -298,7 +301,7 @@
             text: element[options.textProperty],
             value: element[options.valueProperty],
             selected: false,
-            index: index
+            index: index,
           };
           items.selected =
             items.value &&
@@ -307,8 +310,8 @@
           itemsList.push($this.createItem(items));
         });
 
-        $this.list.html('');
-        $this.list.html(itemsList.join(' '));
+        $this.list.html("");
+        $this.list.html(itemsList.join(" "));
         $this.filterData($this.searchBox.val());
 
         if ($this.options.showDropdownOnLoad) {
@@ -349,7 +352,7 @@
        * destory the autocomplete plugin
        *
        */
-      destroy: function () {}
+      destroy: function () {},
     };
 
     return Autocomplete;
@@ -361,21 +364,25 @@
 
   if ($.fn) {
     $.fn.autocomplete = function (options) {
-
       // Validate Options
-      if (!options || !options.textProperty || !options.valueProperty || !options.dataSource) {
+      if (
+        !options ||
+        !options.textProperty ||
+        !options.valueProperty ||
+        !options.dataSource
+      ) {
         throw `${namespace} - Invalid data`;
         return false;
       }
 
       this.each(function (index, element) {
         const searchBox = $(element);
-        searchBox.selectedData = 'data';
+        searchBox.selectedData = "data";
         let data = searchBox.data(namespace);
         if (!data) {
           // remove the default autocomplete
           // TODO check for remove default autocomplete
-          searchBox.attr('novalidate', true);
+          searchBox.attr("novalidate", true);
           searchBox.attr(variables.dataUID, `${namespace}-${index}`);
           data = new Autocomplete(element, options);
           searchBox.data(namespace, data);

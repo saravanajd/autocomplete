@@ -1,0 +1,30 @@
+{
+  "name": "saravanajd-autocomplete",
+  "version": "1.0.1",
+  "description": "A lightweight, flexible, fast jQuery autocomplete/typehead plugin which automatically suggests matching items while typing keywords in a text field",
+  "main": "dist/autocomplete.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saravanajd/autocomplete.git"
+  },
+  "keywords": [
+    "autocomplete",
+    "typehead",
+    "dropdownselect",
+    "dropdownserach",
+    "select"
+  ],
+  "author": "SaravanaJd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saravanajd/autocomplete/issues"
+  },
+  "homepage": "https://saravanajd.github.io/autocomplete/index.html"
+}

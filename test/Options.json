@@ -69,5 +69,11 @@
         "Default": "null",
         "Required": false,
         "Description": "A callback function that fires when a item is selected"
+    },
+    {
+        "Property": "onChange",
+        "Default": "null",
+        "Required": false,
+        "Description": "A callback function that fires when the selected value is changed"
     }
 ]

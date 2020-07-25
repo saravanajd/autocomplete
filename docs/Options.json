@@ -1,73 +1,79 @@
 [{
-        "Property": "textProperty",
-        "Default": "null",
-        "Required": true,
-        "Description": "Text property of an array"
-    },
-    {
-        "Property": "valueProperty",
-        "Default": "null",
-        "Required": true,
-        "Description": "value property of an array"
-    },
-    {
-        "Property": "dataSource",
-        "Default": "[]",
-        "Required": true,
-        "Description": "Array of data to suggest to the user."
-    },
-    {
-        "Property": "defaultValue",
-        "Default": "-",
-        "Required": false,
-        "Description": "Default value assigned to text box"
-    },
-    {
-        "Property": "keyboardDelay",
-        "Default": "500",
-        "Required": false,
-        "Description": "delay in mili seconds seach text while typing"
-    },
-    {
-        "Property": "closeOnSelect",
-        "Default": "true",
-        "Required": false,
-        "Description": "close the dropdown on select"
-    },
-    {
-        "Property": "allowCustomValue",
-        "Default": "false",
-        "Required": false,
-        "Description": "allow user to enter custom value"
-    },
-    {
-        "Property": "showDropdownOnFocus",
-        "Default": "true",
-        "Required": false,
-        "Description": "Show autocomplete on textbox focus"
-    },
-    {
-        "Property": "showDropdownOnLoad",
-        "Default": "false",
-        "Required": false,
-        "Description": "Show dropdown on initialize autocomplete"
-    },
-    {
-        "Property": "selectedClass",
-        "Default": "-",
-        "Required": false,
-        "Description": "Custom class that gets added on item selected"
-    },
-    {
-        "Property": "wrapClass",
-        "Default": "-",
-        "Required": false,
-        "Description": "Custom class that gets added to the dropdown menu container"
-    },
-    {
-        "Property": "onClick",
-        "Default": "null",
-        "Required": false,
-        "Description": "A callback function that fires when a item is selected"
-    }
+    "Property": "textProperty",
+    "Default": "null",
+    "Required": true,
+    "Description": "Text property of an array"
+},
+{
+    "Property": "valueProperty",
+    "Default": "null",
+    "Required": true,
+    "Description": "value property of an array"
+},
+{
+    "Property": "dataSource",
+    "Default": "[]",
+    "Required": true,
+    "Description": "Array of data to suggest to the user."
+},
+{
+    "Property": "defaultValue",
+    "Default": "-",
+    "Required": false,
+    "Description": "Default value assigned to text box"
+},
+{
+    "Property": "keyboardDelay",
+    "Default": "500",
+    "Required": false,
+    "Description": "delay in mili seconds seach text while typing"
+},
+{
+    "Property": "closeOnSelect",
+    "Default": "true",
+    "Required": false,
+    "Description": "close the dropdown on select"
+},
+{
+    "Property": "allowCustomValue",
+    "Default": "false",
+    "Required": false,
+    "Description": "allow user to enter custom value"
+},
+{
+    "Property": "showDropdownOnFocus",
+    "Default": "true",
+    "Required": false,
+    "Description": "Show autocomplete on textbox focus"
+},
+{
+    "Property": "showDropdownOnLoad",
+    "Default": "false",
+    "Required": false,
+    "Description": "Show dropdown on initialize autocomplete"
+},
+{
+    "Property": "selectedClass",
+    "Default": "-",
+    "Required": false,
+    "Description": "Custom class that gets added on item selected"
+},
+{
+    "Property": "wrapClass",
+    "Default": "-",
+    "Required": false,
+    "Description": "Custom class that gets added to the dropdown menu container"
+},
+{
+    "Property": "onClick",
+    "Default": "null",
+    "Required": false,
+    "Description": "A callback function that fires when a item is selected"
+},
+{
+    "Property": "onChange",
+    "Default": "null",
+    "Required": false,
+    "Description": "A callback function that fires when the selected value is changed"
+}
 ]
