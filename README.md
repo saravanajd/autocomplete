@@ -1,5 +1,9 @@
 # <a href='https://saravanajd.github.io/autocomplete/index.html'>Autocomplete</a>
- A lightweight, flexible, fast jQuery autocomplete/typehead plugin which automatically suggests matching items while typing keywords(search items) in a text field. This plugin enables your users to quickly filter, find and select items from huge lists such as user list, country list, search results and you can find more details about autocomplete plugin <a href='https://saravanajd.github.io/autocomplete/index.html'>here</a>.
+ A lightweight, flexible, fast jQuery autocomplete/typehead plugin which automatically suggests matching items while typing keywords(search items) in a text field. This plugin enables your users to quickly filter, find and select items from huge lists such as user list, country list, search results and more.
+
+### Demo
+
+You can view a live demo and some examples of how to use the various options [here](https://saravanajd.github.io/autocomplete/index.html).
 
 ### Add the class autocomplete
 ```
